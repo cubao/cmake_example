@@ -1,3 +1,10 @@
+```
+make python_build_all_in_linux
+```
+
+
+---
+
 # cmake_example for pybind11
 
 [![Gitter][gitter-badge]][gitter-link]

@@ -51,7 +51,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'cmake_example'
+project = 'cubao_cmake_example'
 copyright = '2016, Sylvain Corlay'
 author = 'Sylvain Corlay'
 

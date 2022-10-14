@@ -1,4 +1,4 @@
-import cmake_example as m
+import cubao_cmake_example as m
 
 
 def test_main():

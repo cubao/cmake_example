@@ -1,1 +1,1 @@
-.. automodule:: cmake_example
+.. automodule:: cubao_cmake_example

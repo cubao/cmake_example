@@ -2,6 +2,10 @@
 make python_build_all_in_linux
 ```
 
+```
+python3 -m pip install cubao_cmake_example
+python3 -c 'import cubao_cmake_example; print(cubao_cmake_example.add(1, 2))'
+```
 
 ---
 
@@ -83,8 +87,8 @@ terms and conditions of this license.
 ## Test call
 
 ```python
-import cmake_example
-cmake_example.add(1, 2)
+import cubao_cmake_example
+cubao_cmake_example.add(1, 2)
 ```
 
 [`cibuildwheel`]:          https://cibuildwheel.readthedocs.io

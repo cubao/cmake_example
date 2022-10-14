@@ -2,7 +2,7 @@ all:
 	@echo nothing special
 
 clean:
-	rm -rf build dist cmake_example.egg-info
+	rm -rf build dist wheelhouse *.egg-info
 force_clean:
 	docker run --rm -v `pwd`:`pwd` -w `pwd` -it alpine/make make clean
 .PHONY: clean force_clean
@@ -24,27 +24,43 @@ test_in_linux:
 	docker run --rm -w `pwd` -v `pwd`:`pwd` -v `pwd`/build/win:`pwd`/build -it $(DOCKER_TAG_LINUX) bash
 
 python_install:
-	python3 setup.py install
+	python setup.py install
 python_build:
-	python3 setup.py bdist_wheel
+	python setup.py bdist_wheel
 python_test:
-	python3 -c 'import cmake_example; print(cmake_example.add(1, 2))'
+	python -c 'import cubao_cmake_example; print(cubao_cmake_example.add(1, 2))'
 
+# conda create -y -n py36 python=3.6
+# conda create -y -n py37 python=3.7
+# conda create -y -n py38 python=3.8
+# conda create -y -n py39 python=3.9
+# conda create -y -n py310 python=3.10
+# conda env list
 python_build_py36:
-	PYTHON_EXECUTABLE=python BUILD_DIR=$(BUILD_DIR)/py36 conda run --no-capture-output -n py36 make python_build
+	conda run --no-capture-output -n py36 make python_build
 python_build_py37:
-	PYTHON_EXECUTABLE=python BUILD_DIR=$(BUILD_DIR)/py37 conda run --no-capture-output -n py37 make python_build
+	conda run --no-capture-output -n py37 make python_build
 python_build_py38:
-	PYTHON_EXECUTABLE=python BUILD_DIR=$(BUILD_DIR)/py38 conda run --no-capture-output -n py38 make python_build
+	conda run --no-capture-output -n py38 make python_build
 python_build_py39:
-	PYTHON_EXECUTABLE=python BUILD_DIR=$(BUILD_DIR)/py39 conda run --no-capture-output -n py39 make python_build
+	conda run --no-capture-output -n py39 make python_build
 python_build_py310:
-	PYTHON_EXECUTABLE=python BUILD_DIR=$(BUILD_DIR)/py310 conda run --no-capture-output -n py310 make python_build
+	conda run --no-capture-output -n py310 make python_build
 python_build_all: python_build_py36 python_build_py37 python_build_py38 python_build_py39 python_build_py310
 python_build_all_in_linux:
 	docker run --rm -w `pwd` -v `pwd`:`pwd` -v `pwd`/build/win:`pwd`/build -it $(DOCKER_TAG_LINUX) make python_build_all
+	make repair_wheels && rm -rf dist/*.whl && mv wheelhouse/*.whl dist && rm -rf wheelhouse
+python_build_all_in_macos: python_build_py38 python_build_py39 python_build_py310
 
-pypi_remote ?= local
+repair_wheels:
+	python -m pip install auditwheel
+	ls dist/* | xargs -n1 auditwheel repair --plat manylinux2014_x86_64
+
+pypi_remote ?= pypi
 upload_wheels:
-	python3 -m pip install twine
-	twine upload dist/* -r $(pypi_remote)
+	python -m pip install twine
+	twine upload wheelhouse/*.whl -r $(pypi_remote)
+
+tar.gz:
+	tar cvzf ../cmake_example.tar.gz .
+	ls -alh ../cmake_example.tar.gz

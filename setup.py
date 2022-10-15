@@ -126,11 +126,11 @@ setup(
     author="tzx",
     author_email="dvorak4tzx@gmail.com",
     description="A test project using pybind11 and CMake",
-    long_description=open("README.md").read(),
+    long_description=open("README.md", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
     ext_modules=[CMakeExtension("cubao_cmake_example")],
     cmdclass={"build_ext": CMakeBuild},
     zip_safe=False,
-    extras_require={"test": ["pytest>=6.0"]},
     python_requires=">=3.6",
+    extras_require={"test": ["pytest>=6.0"]},
 )

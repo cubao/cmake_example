@@ -1,10 +1,48 @@
-```
-make python_build_all_in_linux
-```
+# Usage
 
 ```
-python3 -m pip install cubao_cmake_example
+python3 -m pip install cubao_cmake_example # install from pypi
 python3 -c 'import cubao_cmake_example; print(cubao_cmake_example.add(1, 2))'
+```
+
+# Make a release
+
+## On linux
+
+install docker then
+
+```
+make python_build_all_in_linux
+make upload_wheels
+```
+
+## On macOS
+
+install conda and envs:
+
+```
+# conda create -y -n py36 python=3.6
+# conda create -y -n py37 python=3.7
+conda create -y -n py38 python=3.8
+conda create -y -n py39 python=3.9
+conda create -y -n py310 python=3.10
+conda env list
+```
+
+then
+
+```
+make python_build_all_in_macos
+make upload_wheels
+```
+
+## On windows
+
+install conda and envs same as on macOS, then:
+
+```
+make python_build_all_in_macos
+make upload_wheels
 ```
 
 ---

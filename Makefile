@@ -27,6 +27,8 @@ python_install:
 	python setup.py install
 python_build:
 	python setup.py bdist_wheel
+python_sdist:
+	python setup.py sdist
 python_test:
 	python -c 'import cubao_cmake_example; print(cubao_cmake_example.add(1, 2))'
 

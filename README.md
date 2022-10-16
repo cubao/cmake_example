@@ -5,11 +5,16 @@ python3 -m pip install cubao_cmake_example # install from pypi
 python3 -c 'import cubao_cmake_example; print(cubao_cmake_example.add(1, 2))'
 ```
 
+See more examples at [cubao](https://github.com/cubao), e.g.:
+
+-   [pybind11-rdp](https://github.com/cubao/pybind11-rdp): C++ implementation
+    of the Ramer-Douglas-Peucker algorithm (binding to python via pybind11)
+
 # Make a release
 
 ## On linux
 
-install docker then
+Install docker then
 
 ```
 make python_build_all_in_linux
@@ -18,7 +23,9 @@ make upload_wheels
 
 ## On macOS
 
-install conda and envs:
+Install c++ compiler and cmake.
+
+Install conda and envs:
 
 ```
 # conda create -y -n py36 python=3.6
@@ -29,7 +36,7 @@ conda create -y -n py310 python=3.10
 conda env list
 ```
 
-then
+Then
 
 ```
 make python_build_all_in_macos
@@ -38,10 +45,12 @@ make upload_wheels
 
 ## On windows
 
-install conda and envs same as on macOS, then:
+Install visual studio and cmake, (also git for windows, maybe).
+
+Install conda and envs same as on macOS, then:
 
 ```
-make python_build_all_in_macos
+make python_build_all_in_windows
 make upload_wheels
 ```
 

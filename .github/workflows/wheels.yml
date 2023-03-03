@@ -53,12 +53,12 @@ jobs:
       env:
         # CIBW_ARCHS: auto64
         CIBW_ARCHS_LINUX: x86_64 aarch64
-        CIBW_ARCHS_WINDOWS: AMD64 ARM64
+        CIBW_ARCHS_WINDOWS: AMD64 # ARM64
         CIBW_ARCHS_MACOS: x86_64 arm64
         CIBW_BEFORE_BUILD: pip install numpy --prefer-binary
         # https://cibuildwheel.readthedocs.io/en/stable/options/#build-skip
         CIBW_SKIP: pp* *i686 *musllinux*
-        CIBW_TEST_SKIP: "*macosx*"
+        CIBW_TEST_SKIP: "*macosx* *-win_arm64"
 
     - name: Verify clean directory
       run: git diff --exit-code

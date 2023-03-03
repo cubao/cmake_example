@@ -10,6 +10,10 @@ To upgrade `cubao_cmake_example` to the latest version, use pip:
 pip install -U cubao_cmake_example
 ```
 
+## Version 0.0.3 (2023-03-04)
+
+*   Add macOS arm64 (for m1 chip)
+
 ## Version 0.0.2 (2023-03-03)
 
 *   Release to pypi on GitHub workflow

@@ -3,7 +3,7 @@ import re
 import subprocess
 import sys
 
-from setuptools import Extension, setup
+from setuptools import Extension, find_packages, setup
 from setuptools.command.build_ext import build_ext
 
 # Convert distutils Windows platform specifiers to CMake -A arguments
@@ -128,9 +128,11 @@ setup(
     description="A test project using pybind11 and CMake",
     long_description=open("README.md", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
+    packages=find_packages(),
     ext_modules=[CMakeExtension("cubao_cmake_example")],
     cmdclass={"build_ext": CMakeBuild},
     zip_safe=False,
     python_requires=">=3.6",
+    install_requires=["fire"],
     extras_require={"test": ["pytest>=6.0"]},
 )

@@ -1,8 +1,40 @@
 # Usage
 
-```
+```bash
 python3 -m pip install cubao_cmake_example # install from pypi
 python3 -c 'import cubao_cmake_example; print(cubao_cmake_example.add(1, 2))'
+```
+
+```bash
+python3 -m cubao_cmake_example add 1 2
+python3 -m cubao_cmake_example subtract 9 4
+```
+
+```bash
+$ python3 -m cubao_cmake_example pure_python_func --help
+INFO: Showing help with the command '__main__.py pure_python_func -- --help'.
+
+NAME
+    __main__.py pure_python_func
+
+SYNOPSIS
+    __main__.py pure_python_func <flags>
+
+FLAGS
+    --arg1=ARG1
+        Type: int
+        Default: 42
+    --arg2=ARG2
+        Type: float
+        Default: 3.14
+    --arg3=ARG3
+        Type: str
+        Default: 'you shall not pass'
+```
+
+```bash
+$ python3 -m cubao_cmake_example pure_python_func --arg1=43234
+int: 43234, float: 3.14, str: you shall not pass
 ```
 
 See more examples at [cubao](https://github.com/cubao), e.g.:

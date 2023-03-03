@@ -48,6 +48,7 @@ jobs:
         CIBW_ARCHS_MACOS: auto universal2
         # https://cibuildwheel.readthedocs.io/en/stable/options/#build-skip
         CIBW_SKIP: pp* *i686
+        CIBW_BEFORE_BUILD: pip install numpy scipy --prefer-binary
 
     - name: Verify clean directory
       run: git diff --exit-code

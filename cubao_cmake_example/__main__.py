@@ -1,4 +1,4 @@
-from cubao_cmake_example import *
+from cubao_cmake_example import *  # noqa
 
 if __name__ == "__main__":
     import fire

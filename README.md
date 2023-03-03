@@ -9,6 +9,7 @@ See more examples at [cubao](https://github.com/cubao), e.g.:
 
 -   [pybind11-rdp](https://github.com/cubao/pybind11-rdp): C++ implementation
     of the Ramer-Douglas-Peucker algorithm (binding to python via pybind11)
+-   [concave_hull](https://github.com/cubao/concave_hull):  A very fast 2D concave hull algorithm, for python
 
 # Make a release
 

@@ -1,3 +1,6 @@
+PROJECT_SOURCE_DIR ?= $(abspath ./)
+PROJECT_NAME ?= $(shell basename $(PROJECT_SOURCE_DIR))
+
 all:
 	@echo nothing special
 
@@ -57,14 +60,14 @@ python_build_py310:
 	PYTHON=python conda run --no-capture-output -n py310 make python_build
 python_build_all: python_build_py36 python_build_py37 python_build_py38 python_build_py39 python_build_py310
 python_build_all_in_linux:
-	docker run --rm -w `pwd` -v `pwd`:`pwd` -v `pwd`/build/win:`pwd`/build -it $(DOCKER_TAG_LINUX) make python_build_all
-	make repair_wheels && rm -rf dist/*.whl && mv wheelhouse/*.whl dist && rm -rf wheelhouse
+	docker run --rm -w `pwd` -v `pwd`:`pwd` -v `pwd`/build/win:`pwd`/build -it $(DOCKER_TAG_LINUX) make python_build_all repair_wheels
 python_build_all_in_macos: python_build_py38 python_build_py39 python_build_py310
 python_build_all_in_windows: python_build_all
 
 repair_wheels:
 	python -m pip install auditwheel # sudo apt install patchelf
-	ls dist/* | xargs -n1 auditwheel repair --plat manylinux2014_x86_64
+	ls dist/*-linux_x86_64.whl | xargs -n1 auditwheel repair --plat manylinux2014_x86_64
+	rm -rf dist/*-linux_x86_64.whl && cp wheelhouse/*.whl dist && rm -rf wheelhouse
 
 pypi_remote ?= pypi
 upload_wheels:
@@ -72,8 +75,8 @@ upload_wheels:
 	twine upload dist/*.whl -r $(pypi_remote)
 
 tar.gz:
-	tar -cvz --exclude .git -f ../cmake_example.tar.gz .
-	ls -alh ../cmake_example.tar.gz
+	tar -cvz --exclude .git -f ../$(PROJECT_NAME).tar.gz .
+	ls -alh ../$(PROJECT_NAME).tar.gz
 
 # https://stackoverflow.com/a/25817631
 echo-%  : ; @echo -n $($*)

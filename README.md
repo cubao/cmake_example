@@ -1,13 +1,53 @@
-# Usage
+# cmake-example
+
+Online document: **[readthedocs](http://cmake-example.readthedocs.io/)**
+
+<!--intro-start-->
+
+## Usage
+
+Install:
 
 ```bash
 python3 -m pip install cubao_cmake_example # install from pypi
 python3 -c 'import cubao_cmake_example; print(cubao_cmake_example.add(1, 2))'
 ```
 
+CLI interface: (created with [python-fire](https://github.com/google/python-fire))
+
 ```bash
 python3 -m cubao_cmake_example add 1 2
 python3 -m cubao_cmake_example subtract 9 4
+```
+
+Help:
+
+```bash
+$ python3 -m cubao_cmake_example --help
+INFO: Showing help with the command '__main__.py -- --help'.
+
+NAME
+    __main__.py
+
+SYNOPSIS
+    __main__.py GROUP | COMMAND
+
+GROUPS
+    GROUP is one of the following:
+
+     fire
+       The Python Fire module.
+
+COMMANDS
+    COMMAND is one of the following:
+
+     add
+       add(arg0: int, arg1: int) -> int
+
+     subtract
+       subtract(arg0: int, arg1: int) -> int
+
+     pure_python_func
 ```
 
 ```bash
@@ -30,20 +70,18 @@ FLAGS
     --arg3=ARG3
         Type: str
         Default: 'you shall not pass'
-```
 
-```bash
 $ python3 -m cubao_cmake_example pure_python_func --arg1=43234
 int: 43234, float: 3.14, str: you shall not pass
 ```
 
-See more examples at [cubao](https://github.com/cubao), e.g.:
+<!--intro-end-->
 
--   [pybind11-rdp](https://github.com/cubao/pybind11-rdp): C++ implementation
-    of the Ramer-Douglas-Peucker algorithm (binding to python via pybind11)
--   [concave_hull](https://github.com/cubao/concave_hull):  A very fast 2D concave hull algorithm, for python
+---
 
 # Make a release
+
+(We now use Github Workflow to release to pypi. Skip the rest if you don't want to manually compile wheels.)
 
 ## On linux
 

@@ -24,7 +24,7 @@ pip install -U cubao_cmake_example
 
 ---
 
-You can also checkout release on:
+You can also checkout releases on:
 
 -   GitHub: <https://github.com/cubao/cmake_example/releases>
--   pypi: <https://pypi.org/project/cubao-cmake-example>
+-   PyPi: <https://pypi.org/project/cubao-cmake-example>

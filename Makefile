@@ -23,7 +23,7 @@ build:
 docs_build:
 	mkdocs build
 docs_serve:
-	mkdocs serve
+	mkdocs serve -a 0.0.0.0:8088
 
 DOCKER_TAG_WINDOWS ?= ghcr.io/cubao/build-env-windows-x64:v0.0.1
 DOCKER_TAG_LINUX ?= ghcr.io/cubao/build-env-manylinux2014-x64:v0.0.1

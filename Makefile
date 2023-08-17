@@ -21,8 +21,10 @@ build:
 .PHONY: build
 
 docs_build:
+	python3 -m pip install -r docs/requirements.txt
 	mkdocs build
 docs_serve:
+	python3 -m pip install -r docs/requirements.txt
 	mkdocs serve -a 0.0.0.0:8088
 
 DOCKER_TAG_WINDOWS ?= ghcr.io/cubao/build-env-windows-x64:v0.0.1

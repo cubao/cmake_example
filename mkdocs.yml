@@ -6,7 +6,7 @@ site_author: district10
 repo_url: https://github.com/cubao/cmake_example
 edit_uri: blob/master/docs/
 
-theme: readthedocs
+theme: material
 nav:
   - Home: index.md
   - Code: code.md
